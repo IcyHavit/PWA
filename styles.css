@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f3f6fa;
+  color: #222;
+}
+
+header {
+  background: #005784;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+main {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: #005784;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+.event-card {
+  border-left: 4px solid #005784;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+  background: #f8fafc;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-info {
+  max-width: 80%;
+}
+
+.event-title {
+  font-weight: 600;
+}
+
+.event-meta {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.delete-btn {
+  background: #e53e3e;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  width: auto;
+}
+
+.delete-btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Estilos del Calendario */
+.calendar-section {
+  padding: 1.5rem;
+}
+
+.calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-controls h2 {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.nav-btn {
+  width: auto;
+  padding: 0.5rem 1rem;
+  background: #005784;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav-btn:hover {
+  filter: brightness(1.05);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-day-name {
+  text-align: center;
+  font-weight: 600;
+  padding: 0.5rem;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-day:hover {
+  background: #f0f8ff;
+  border-color: #005784;
+  box-shadow: 0 2px 8px rgba(0, 87, 132, 0.2);
+}
+
+.calendar-day-number {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.calendar-event-badge {
+  background: #005784;
+  color: white;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #555;
+  margin: 1rem 0;
+}

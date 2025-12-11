@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Agenda PWA</title>
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Color de la barra del navegador en móvil -->
+  <meta name="theme-color" content="#005784" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Mini Agenda</h1>
+    <p>Agenda simple offline con calendario</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Agregar evento</h2>
+      <form id="event-form">
+        <label>
+          Título del evento
+          <input type="text" id="title" required />
+        </label>
+
+        <label>
+          Fecha
+          <input type="date" id="date" required />
+        </label>
+
+        <label>
+          Hora (opcional)
+          <input type="time" id="time" />
+        </label>
+
+        <button type="submit">Guardar</button>
+      </form>
+    </section>
+
+    <section class="calendar-section">
+      <div class="calendar-controls">
+        <button id="prev-month" class="nav-btn">◀ Anterior</button>
+        <h2 id="calendar-header"></h2>
+        <button id="next-month" class="nav-btn">Siguiente ▶</button>
+      </div>
+      <div id="calendar-grid" class="calendar-grid"></div>
+    </section>
+
+    <section id="day-events-section" class="list-section">
+      <h2 id="day-events-title">Eventos</h2>
+      <div id="day-events-list">
+        <!-- Aquí se pintan los eventos del día -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Mini Agenda PWA – Offline & LocalStorage</small>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="calendar.js"></script>
+  <script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch(err => console.error('Error al registrar SW', err));
+    }
+
+    // Inicializar calendario
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCalendar();
+    });
+
+    document.getElementById('prev-month').addEventListener('click', previousMonth);
+    document.getElementById('next-month').addEventListener('click', nextMonth);
+  </script>
+</body>
+</html>
