@@ -92,8 +92,16 @@ function showDayEvents(dateStr, dayEvents) {
       deleteBtn.textContent = 'Eliminar';
       deleteBtn.addEventListener('click', () => {
         deleteEvent(ev.id);
-        renderCalendar();
-        showDayEvents(dateStr, getEvents().filter(e => e.date === dateStr));
+        // Refrescar lista y calendario después de eliminar
+        setTimeout(() => {
+          if (typeof renderEvents === 'function') {
+            renderEvents();
+          }
+          renderCalendar();
+          // Mostrar eventos actualizados del día
+          const updatedDayEvents = getEvents().filter(e => e.date === dateStr);
+          showDayEvents(dateStr, updatedDayEvents);
+        }, 50);
       });
       
       card.appendChild(info);

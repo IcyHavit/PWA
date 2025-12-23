@@ -2,13 +2,26 @@ const form = document.getElementById('event-form');
 const titleInput = document.getElementById('title');
 const dateInput = document.getElementById('date');
 const timeInput = document.getElementById('time');
-const eventsList = document.getElementById('events-list');
+const eventsList = document.getElementById('day-events-list');
 
 const STORAGE_KEY = 'mini-agenda-events';
+
+// Funciones compartidas (disponibles para calendar.js también)
+function getEvents() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored ? JSON.parse(stored) : [];
+}
+
+function saveEvents(events) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+}
 
 // Cargar eventos al iniciar
 document.addEventListener('DOMContentLoaded', () => {
   renderEvents();
+  if (typeof renderCalendar === 'function') {
+    renderCalendar();
+  }
 });
 
 form.addEventListener('submit', (e) => {
@@ -36,21 +49,20 @@ form.addEventListener('submit', (e) => {
 
   form.reset();
   renderEvents();
+  // Actualizar calendario inmediatamente después de agregar
+  if (typeof renderCalendar === 'function') {
+    renderCalendar();
+  }
 });
-
-function getEvents() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return stored ? JSON.parse(stored) : [];
-}
-
-function saveEvents(events) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
-}
 
 function deleteEvent(id) {
   const events = getEvents().filter(ev => ev.id !== id);
   saveEvents(events);
   renderEvents();
+  // Actualizar calendario después de eliminar
+  if (typeof renderCalendar === 'function') {
+    renderCalendar();
+  }
 }
 
 function renderEvents() {
@@ -104,3 +116,11 @@ function renderEvents() {
     eventsList.appendChild(card);
   });
 }
+
+// Si otro tab modifica los eventos, sincronizar vista y calendario
+window.addEventListener('storage', (e) => {
+  if (e.key === STORAGE_KEY) {
+    renderEvents();
+    if (typeof renderCalendar === 'function') renderCalendar();
+  }
+});
